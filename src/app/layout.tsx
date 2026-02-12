@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Martian_Mono, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
+import RootProvider from "./RootProvider";
 
 const schibstedGrotesk = Schibsted_Grotesk({
-    variable: "--font-schibsted-grotesk",
-    subsets: ["latin"],
+  variable: "--font-schibsted-grotesk",
+  subsets: ["latin"],
 });
 
 const martianMono = Martian_Mono({
-    variable: "--font-martian-mono",
-    subsets: ["latin"],
+  variable: "--font-martian-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +31,9 @@ export default function RootLayout({
         className={`${schibstedGrotesk.variable} ${martianMono.variable} antialiased`}
 
       >
-        {children}
+        <RootProvider>
+          {children}
+        </RootProvider>
       </body>
     </html>
   );
