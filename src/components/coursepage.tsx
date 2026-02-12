@@ -1,6 +1,4 @@
 import BeginnerCourseCard from './BeginnerCourseCard';
-import AdvancedCourseCard from './AdvancedCourseCard';
-import IntermediateCourseCard from './IntermediateCourseCard';
 
 const COURSES = [
     {
@@ -119,46 +117,19 @@ export default function Page() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-8">
                     {COURSES.map((course, index) => {
-                        if (course.level === 'Beginner') {
-                            return (
-                                <BeginnerCourseCard
-                                    key={index}
-                                    id={course.id}
-                                    title={course.title}
-                                    learners={course.learners}
-                                    description={course.description}
-                                    author={course.author}
-                                    modules={course.modules}
-                                />
-                            );
-                        } else if (course.level === 'Advanced') {
-                            return (
-                                <AdvancedCourseCard
-                                    key={index}
-                                    id={course.id}
-                                    title={course.title}
-                                    learners={course.learners}
-                                    description={course.description}
-                                    author={course.author}
-                                    modules={course.modules}
-                                    imageUrl={course.imageUrl || ''}
-                                />
-                            );
-                        } else if (course.level === 'Intermediate') {
-                            return (
-                                <IntermediateCourseCard
-                                    key={index}
-                                    id={course.id}
-                                    title={course.title}
-                                    learners={course.learners}
-                                    description={course.description}
-                                    author={course.author}
-                                    modules={course.modules}
-                                    imageUrl={course.imageUrl || ''}
-                                />
-                            );
-                        }
-                        return null;
+                        return (
+                            <BeginnerCourseCard
+                                key={index}
+                                id={course.id}
+                                title={course.title}
+                                learners={course.learners}
+                                description={course.description}
+                                author={course.author}
+                                modules={course.modules}
+                                imageUrl={course.imageUrl || ''}
+                                level={course.level}
+                            />
+                        );
                     })}
                 </div>
             </div>

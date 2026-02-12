@@ -10,6 +10,9 @@ interface BeginnerCourseCardProps {
     author: string;
     imageText?: string;
     imageUrl?: string;
+    level?: string;
+    ribbonBgClass?: string;
+    ribbonTextClass?: string;
 }
 
 const BeginnerCourseCard: React.FC<BeginnerCourseCardProps> = ({
@@ -20,39 +23,70 @@ const BeginnerCourseCard: React.FC<BeginnerCourseCardProps> = ({
     modules,
     author,
     imageText = "S.U",
-    imageUrl
+    imageUrl,
+    level = "Beginner",
+    ribbonBgClass,
+    ribbonTextClass
 }) => {
+    const getLevelStyles = (level: string) => {
+        switch (level) {
+            case 'Intermediate':
+                return {
+                    text: 'text-[#EA580C]',
+                    ribbonBg: 'bg-white',
+                    border: 'group-hover:border-orange-200',
+                    imageBg: ''
+                };
+            case 'Advanced':
+                return {
+                    text: 'text-[#16A34A]',
+                    ribbonBg: 'bg-white',
+                    border: 'group-hover:border-green-200',
+                    imageBg: ''
+                };
+            default:
+                return {
+                    text: 'text-[#3269E1]',
+                    ribbonBg: 'bg-white',
+                    border: 'group-hover:border-blue-200',
+                    imageBg: 'bg-[#F3F7FF]'
+                };
+        }
+    };
+
+    const levelStyles = getLevelStyles(level);
+
     return (
         <Link
             href={`/demo/course/${id}`}
-            className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden p-2 flex flex-col w-full max-w-[350px] transition-all hover:shadow-md hover:border-blue-200 active:scale-[0.99] group"
+            className={`bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden p-2 flex flex-col w-full max-w-[350px] transition-all hover:shadow-md active:scale-[0.99] group ${levelStyles.border}`}
         >
-            
-            <div className="relative h-[160px] rounded-xl flex items-center justify-center overflow-hidden bg-[#F3F7FF]">
+
+            <div className={`relative h-[140px] rounded-xl flex items-center justify-center overflow-hidden ${levelStyles.imageBg || ''}`}>
                 {imageUrl ? (
                     <img src={imageUrl} alt={title} className="w-[334px] h-[149px] object-cover" />
                 ) : (
-                    <span className="text-[#3269E1] text-5xl font-bold tracking-tighter">{imageText}</span>
+                    <span className={`${levelStyles.text} text-5xl font-bold tracking-tighter`}>{imageText}</span>
                 )}
 
-                
+
                 <div
-                    className="absolute top-0 left-0 w-32 h-32 overflow-hidden pointer-events-none"
+                    className="absolute top-0 left-0 w-30 h-30 overflow-hidden pointer-events-none"
                     style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
                 >
                     <div
-                        className="absolute top-[20px] left-[-35px] w-[140px] py-1 text-center text-[10px] font-bold uppercase tracking-wider -rotate-45 shadow-sm bg-[#E6F0FF] text-[#3269E1]"
+                        className={`absolute top-[18px] left-[-55px] w-40 py-1 text-center text-[15px] font-bold tracking-tight -rotate-40 shadow-sm border-b border-gray-100 ${ribbonBgClass || (levelStyles as any).ribbonBg} ${ribbonTextClass || levelStyles.text}`}
                     >
-                        Beginner
+                        {level}
                     </div>
                 </div>
 
-            
-                <button className="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="1" />
-                        <circle cx="12" cy="5" r="1" />
-                        <circle cx="12" cy="19" r="1" />
+
+                <button className="absolute top-1 right-1.5 w-7 h-7 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all active:scale-95 ml-30">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="7" r="1.5" fill="#111827" />
+                        <circle cx="12" cy="12" r="1.5" fill="#111827" />
+                        <circle cx="12" cy="17" r="1.5" fill="#111827" />
                     </svg>
                 </button>
             </div>
@@ -89,7 +123,7 @@ const BeginnerCourseCard: React.FC<BeginnerCourseCardProps> = ({
             >
                 View course
             </div>
-        </Link>
+        </Link >
     );
 };
 
