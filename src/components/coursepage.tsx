@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import BeginnerCourseCard from './BeginnerCourseCard';
 import CreateCourse from './CreatCourse';
+// import CourseCarousel from './CourseCarousel';
 import { useGetCoursesQuery } from '../redux/api/courseQuery';
 
 export default function Page() {
@@ -46,6 +47,8 @@ export default function Page() {
                         Create Course
                     </button>
                 </div>
+
+                {/* <CourseCarousel /> */}
 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
                     <div className="max-w-xl">
