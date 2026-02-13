@@ -59,12 +59,12 @@ const BeginnerCourseCard: React.FC<BeginnerCourseCardProps> = ({
     return (
         <Link
             href={`/demo/course/${id}`}
-            className={`bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden p-2 flex flex-col w-full max-w-[350px] transition-all hover:shadow-md active:scale-[0.99] group ${levelStyles.border}`}
+            className={`bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden p-2 flex flex-col w-full sm:w-[320px] transition-all hover:shadow-md active:scale-[0.99] group ${levelStyles.border}`}
         >
 
-            <div className={`relative h-[140px] rounded-xl flex items-center justify-center overflow-hidden ${levelStyles.imageBg || ''}`}>
+            <div className={`relative h-[120px] sm:h-[140px] rounded-xl flex items-center justify-center overflow-hidden ${levelStyles.imageBg || ''}`}>
                 {imageUrl ? (
-                    <img src={imageUrl} alt={title} className="w-[334px] h-[149px] object-cover" />
+                    <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
                 ) : (
                     <span className={`${levelStyles.text} text-5xl font-bold tracking-tighter`}>{imageText}</span>
                 )}
@@ -82,19 +82,19 @@ const BeginnerCourseCard: React.FC<BeginnerCourseCardProps> = ({
                 </div>
 
 
-                <button className="absolute top-1 right-1.5 w-7 h-7 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all active:scale-95 ml-30">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="7" r="1.5" fill="#111827" />
-                        <circle cx="12" cy="12" r="1.5" fill="#111827" />
-                        <circle cx="12" cy="17" r="1.5" fill="#111827" />
+                <button className="absolute top-3 right-1.5 sm:h-6 sm:w-6 md:h-6 md:w-6  w-8 h-8 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all active:scale-95 z-20 group/menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gray-900 group-hover/menu:scale-110 transition-transform">
+                        <circle cx="12" cy="7" r="1.5" fill="currentColor" />
+                        <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+                        <circle cx="12" cy="17" r="1.5" fill="currentColor" />
                     </svg>
                 </button>
             </div>
 
             <div className="flex-1 space-y-2 p-2">
-                <div className="flex justify-between items-start">
-                    <h3 className="font-bold text-gray-900 line-clamp-1 text-lg">{title}</h3>
-                    <span className="text-gray-400 text-sm whitespace-nowrap ml-2">{learners} Learners</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                    <h3 className="font-bold text-gray-900 line-clamp-1 text-base sm:text-lg">{title}</h3>
+                    <span className="text-gray-400 text-xs sm:text-sm whitespace-nowrap">{learners} Learners</span>
                 </div>
 
                 <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed">
@@ -119,7 +119,7 @@ const BeginnerCourseCard: React.FC<BeginnerCourseCardProps> = ({
             </div>
 
             <div
-                className="mt-5 block w-full bg-[#1866DA] group-hover:bg-[#1559C0] text-white py-3 rounded-xl font-semibold transition-all shadow-md text-center"
+                className="mt-5 block w-full bg-[#1866DA] hover:bg-[#1559C0] text-white py-3 rounded-xl font-semibold transition-all shadow-md text-center active:scale-[0.98]"
             >
                 View course
             </div>
